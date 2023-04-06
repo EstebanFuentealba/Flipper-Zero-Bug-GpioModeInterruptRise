@@ -26,4 +26,4 @@ jobs:
         if: startsWith(github.ref, 'refs/tags/')
         with:
           files: |
-            "../ufbt/.ufbt/build/bug.fap"
+            ../ufbt/.ufbt/build/bug.fap
