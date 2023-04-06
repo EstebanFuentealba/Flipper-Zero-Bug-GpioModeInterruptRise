@@ -18,9 +18,8 @@ jobs:
       - name: Clone ufbt
         run: |
           git config --global url.https://github.com/.insteadOf git://github.com/
-          git clone https://github.com/flipperdevices/flipperzero-ufbt.git ufbt
+          git clone https://github.com/flipperdevices/flipperzero-ufbt.git ..
       - name: install ufbt toolkit & build app
         run: |
-          rm -Rf ./ufbt/project_template
-          chmod +x ./ufbt/ufbt
-          ./ufbt/ufbt "fap_$(grep -o 'appid="[a-zA-Z0-9]\+"' application.fam | awk -F '"' '{print $2}')"
+          chmod +x ../ufbt
+          ../ufbt "fap_$(grep -o 'appid="[a-zA-Z0-9]\+"' application.fam | awk -F '"' '{print $2}')"
