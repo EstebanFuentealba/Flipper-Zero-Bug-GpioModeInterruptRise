@@ -19,13 +19,7 @@ jobs:
         run: |
           git config --global url.https://github.com/.insteadOf git://github.com/
           git clone https://github.com/flipperdevices/flipperzero-ufbt.git
-      - name: install cppunit
+      - name: install ufbt
         run: |
-          ls
-          cd flipperzero-ufbt
-          ls
-          python --version
-          chmod +x ./ufbt
-          echo "$(uname -s)"
-          echo "$(uname -m)"
-          ./ufbt --help
+          chmod +x ./flipperzero-ufbt/ufbt
+          ./flipperzero-ufbt/ufbt "fap_$(grep -o 'appid="[a-zA-Z0-9]\+"' application.fam | awk -F '"' '{print $2}')"
