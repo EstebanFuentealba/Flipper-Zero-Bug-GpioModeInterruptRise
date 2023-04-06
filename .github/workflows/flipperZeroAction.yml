@@ -1,0 +1,31 @@
+name: Flipper Zero CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      # - uses: actions/setup-python@v4
+      #   with:
+      #     python-version: "2.7.18"
+      #     cache: "pip" # caching pip dependencies
+      - uses: actions/checkout@v3
+      - name: Clone ufbt
+        run: |
+          git config --global url.https://github.com/.insteadOf git://github.com/
+          git clone https://github.com/flipperdevices/flipperzero-ufbt.git
+      - name: install cppunit
+        run: |
+          ls
+          cd flipperzero-ufbt
+          ls
+          python --version
+          chmod +x ./ufbt
+          echo "$(uname -s)"
+          echo "$(uname -m)"
+          ./ufbt --help
