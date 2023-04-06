@@ -21,12 +21,9 @@ jobs:
       - name: install ufbt toolkit & build app
         run: |
           ../ufbt/ufbt "fap_$(grep -o 'appid="[a-zA-Z0-9]\+"' application.fam | awk -F '"' '{print $2}')"
-          ls
-          cd ../ufbt
-          ls
       - name: Release
         uses: softprops/action-gh-release@v1
         if: startsWith(github.ref, 'refs/tags/')
         with:
           files: |
-            "./ufbt/build/$(grep -o 'appid="[a-zA-Z0-9]\+"' application.fam | awk -F '"' '{print $2}').fap"
+            "../.ufbt/build/$(grep -o 'appid="[a-zA-Z0-9]\+"' application.fam | awk -F '"' '{print $2}').fap"
